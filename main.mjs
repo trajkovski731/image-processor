@@ -49,7 +49,6 @@ function registerSobelFilter(context, canvas, image) {
 }
 
 function removeNoise(data, threshold) {
-  console.log(data.length)
   for (let i = 0; i < data.length; i += 4) {
     const intensity = data[i]
     if (intensity < threshold) {
@@ -59,4 +58,11 @@ function removeNoise(data, threshold) {
     }
   }
   return data
+}
+
+function samplePoints(data, amount) {
+  const candidates = []
+  for (let i = 0; i < data.length; i += 4) {
+    if (data[i] > 0) candidates.push(i)
+  }
 }
