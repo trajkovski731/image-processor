@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -8,10 +8,18 @@
   </head>
   <body>
     <div id="app">
-      <label for="upload"></label>
-      <input type="file" id="upload" accept="image/jpeg, image/png">
-      <canvas id="main-canvas"></canvas>
+      <div>
+        <label for="upload"></label>
+        <input type="file" id="upload" accept="image/jpeg, image/png" />
+        <button id="sobel-filter-btn">Sobel</button>
+      </div>
+      <canvas
+        id="main-canvas"
+        width="1200"
+        height="600"
+        style="border: 1px solid black"
+      ></canvas>
     </div>
-    <script type="module" src="/main.js"></script>
+    <script type="module" src="/main.mjs"></script>
   </body>
 </html>
