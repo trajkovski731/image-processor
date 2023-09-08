@@ -48,7 +48,6 @@ function sobelFilterHandler(context, canvas, image) {
   const edges = sobel(context, canvas, image)
   removeNoise(edges.data, 120)
   const sampleRate = document.querySelector('#range-input')
-  console.log(sampleRate.value)
   const sample = samplePoints(edges.data, parseInt(sampleRate.value), image)
   const triangles = triangulate(sample)
   context.putImageData(edges, 0, 0)
@@ -82,7 +81,7 @@ function sobelFilterHandler(context, canvas, image) {
 
     // context.beginPath()
     // context.fillStyle = '#ff0000'
-    // context.fillRect(centerX, centerY, 1, 1)
+    // context.fillRect(centerX, centerY, 5, 5)
     // context.fill()
 
     context.fillStyle = color
