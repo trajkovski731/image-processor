@@ -1,7 +1,6 @@
 import { Sobel } from 'sobel'
 import triangulate from 'delaunay-triangulate'
 
-console.log(triangulate)
 let readonlyBuffer
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -35,18 +34,23 @@ document.addEventListener('DOMContentLoaded', () => {
   registerSobelFilter(context, canvas, image)
 })
 
+function reset(context, image) {
+  context.drawImage(image, 0, 0, image.width, image.height)
+}
+
 function sobel(context, canvas, image) {
   const data = context.getImageData(0, 0, image.width, image.height)
   return Sobel(data).toImageData()
 }
 
 function sobelFilterHandler(context, canvas, image) {
+  reset(context, image)
   const edges = sobel(context, canvas, image)
   removeNoise(edges.data, 120)
-  const sample = samplePoints(edges.data, 4000, image)
-  console.log(sample)
+  const sampleRate = document.querySelector('#range-input')
+  console.log(sampleRate.value)
+  const sample = samplePoints(edges.data, parseInt(sampleRate.value), image)
   const triangles = triangulate(sample)
-  console.log(triangles)
   context.putImageData(edges, 0, 0)
   // sample.forEach(point => {
   //   context.beginPath()
@@ -120,7 +124,8 @@ function samplePoints(data, amount, image) {
 
   const clamp = (num, min, max) => Math.min(Math.max(num, min), max)
 
-  const stepsize = 20
+  const bgPolyDensity = document.querySelector('#background-polygon-denisty')
+  const stepsize = 55 - parseInt(bgPolyDensity.value)
   for (let i = 0; i < image.width; i += stepsize) {
     for (let j = 0; j < image.height; j += stepsize) {
       sample.push([

@@ -11,7 +11,31 @@
       <div>
         <label for="upload"></label>
         <input type="file" id="upload" accept="image/jpeg, image/png" />
-        <button id="sobel-filter-btn">Sobel</button>
+        <div style="margin-top: 2rem; margin-bottom: 2rem">
+          <div>
+            <label for="range-input">Sample Rate</label>
+            <input
+              type="range"
+              id="range-input"
+              min="100"
+              max="6000"
+              value="3000"
+            />
+          </div>
+          <div>
+            <label for="background-polygon-denisty"
+              >Background Polygon Density</label
+            >
+            <input
+              type="range"
+              id="background-polygon-denisty"
+              min="5"
+              max="50"
+              value="20"
+            />
+          </div>
+          <button id="sobel-filter-btn">Polymorph</button>
+        </div>
       </div>
       <canvas
         id="main-canvas"
